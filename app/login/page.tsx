@@ -66,6 +66,15 @@ export default function Login() {
         >
           {loading ? "Logging in..." : "Login"}
         </button>
+                <p className="text-sm text-center mt-5 text-gray-600">
+          Didn't have an account?{" "}
+          <span
+            onClick={() => (window.location.href = "/signup")}
+            className="text-indigo-600 font-semibold cursor-pointer hover:underline"
+          >
+            Sign up
+          </span>
+        </p>
       </div>
     </div>
   );
