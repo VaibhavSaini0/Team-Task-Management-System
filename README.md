@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Team Task Manager
 
-## Getting Started
+A full-stack team collaboration and task management application built with Next.js, MongoDB, JWT Authentication, and Tailwind CSS.
 
-First, run the development server:
+This platform allows administrators to create projects, assign tasks to members, monitor progress, and manage workflow in one centralized dashboard. Team members can log in, view their assigned work, and update task completion status in real time.
+
+---
+
+## 🚀 Features
+
+### 🔐 Authentication & Authorization
+- Secure Login / Register system
+- JWT based token authentication
+- Role based access control (Admin / User)
+- Protected dashboard routes
+
+### 👨‍💼 Admin Capabilities
+- Create new projects
+- Delete projects with dependency validation
+- Create tasks and assign tasks to team members
+- Delete tasks
+- View all team progress from dashboard
+
+### 👨‍💻 Member Capabilities
+- View only assigned tasks
+- Update task status:
+  - Pending
+  - In Progress
+  - Done
+- Track deadlines and assignments
+
+### 📊 Dashboard Monitoring
+- Total active projects
+- Pending tasks
+- In progress tasks
+- Completed tasks
+- Quick overview cards
+- Limited task preview with View More navigation
+
+### 🗂 Project Management
+- Project wise task linking
+- Prevent project deletion if linked tasks exist
+
+### ✅ Task Management
+- Task assignment system
+- Task filtering
+- Dynamic task status UI updates
+- Confirmation before destructive actions
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS
+
+### Backend / API
+- Next.js API Routes
+- JWT Authentication
+- Cookie Handling
+
+### Database
+- MongoDB
+- Mongoose ODM
+
+### Other Libraries
+- bcryptjs
+- jsonwebtoken
+
+---
+
+## 📁 Folder Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+app/
+ ┣ api/
+ ┃ ┣ auth/
+ ┃ ┣ tasks/
+ ┃ ┣ projects/
+ ┃ ┗ users/
+ ┣ dashboard/
+ ┃ ┣ page.tsx
+ ┃ ┣ tasks/
+ ┃ ┗ projects/
+components/
+ ┣ DashboardTaskCard.tsx
+ ┣ TaskManagementCard.tsx
+ ┗ ProjectCard.tsx
+lib/
+ ┣ axiosClient.ts
+ ┣ dbConnect.ts
+ ┣ getCurrentUser.ts
+ ┗ permissions.ts
+models/
+ ┣ User.ts
+ ┣ Task.ts
+ ┗ Project.ts
