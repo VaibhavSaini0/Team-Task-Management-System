@@ -36,9 +36,9 @@ export default function Dashboard() {
   const [status, setStatus] = useState<Task["status"]>("PENDING");
   const [dueDate, setDueDate] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
-
+  const [loading,setLoading]=useState(false);
   const fetchData = async () => {
-    try {
+    try {setLoading(true);
       const [taskRes, userRes, projectRes] = await Promise.all([
         authFetch(API.tasks),
         authFetch(API.users),
@@ -57,6 +57,9 @@ export default function Dashboard() {
       setTasks([]);
       setUsers([]);
       setProjects([]);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -112,6 +115,13 @@ export default function Dashboard() {
     currentUser.role === "USER"
       ? tasks.filter((t) => t.assignedTo?._id === currentUser._id).slice(0, 3)
       : tasks.slice(0, 3);
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-lg font-semibold">
+        Loading Workspace...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen px-6 py-8 max-w-7xl mx-auto space-y-8">

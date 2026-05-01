@@ -31,10 +31,12 @@ export default function Tasks() {
   const [role, setRole] = useState("");
   const [currentUserId, setCurrentUserId] = useState("");
   const [updatingTask, setUpdatingTask] = useState("");
-
+  const [loading,setLoading]=useState(false)
   // ================= FETCH =================
   const fetchTasks = async () => {
+    
     try {
+      setLoading(true)
       const [taskRes, userRes] = await Promise.all([
         authFetch(API.tasks),
         authFetch(API.users),
@@ -47,6 +49,9 @@ export default function Tasks() {
       setUsers(Array.isArray(userData) ? userData : []);
     } catch (err) {
       console.error(err);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -129,6 +134,13 @@ export default function Tasks() {
   const pending = tasks.filter((t) => t.status === "PENDING").length;
   const progress = tasks.filter((t) => t.status === "IN_PROGRESS").length;
   const done = tasks.filter((t) => t.status === "DONE").length;
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-lg font-semibold">
+        Loading Workspace...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen max-w-6xl mx-auto px-6 py-8 space-y-8">

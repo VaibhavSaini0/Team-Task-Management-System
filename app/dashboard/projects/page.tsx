@@ -11,9 +11,10 @@ export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
-
+  const[loading,setLoading]=useState(false);
   const fetchProjects = async () => {
     try {
+      setLoading(true);
       const res = await authFetch(API.projects);
       const data = await res.json();
 
@@ -23,6 +24,9 @@ export default function Projects() {
     } catch (error) {
       console.error("Fetch Projects Error:", error);
       setProjects([]);
+    }
+    finally{
+      setLoading(false)
     }
   };
   useEffect(() => {
@@ -71,6 +75,14 @@ export default function Projects() {
       console.error("Delete Project Error:", error);
     }
   };
+    if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-lg font-semibold">
+        Loading Workspace...
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen max-w-6xl mx-auto px-6 py-8 space-y-8">
       {/* HEADER */}
