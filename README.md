@@ -69,6 +69,15 @@ This platform allows administrators to create projects, assign tasks to members,
 - bcryptjs
 - jsonwebtoken
 
+### DEMO LOGIN
+- Admin Account:
+- Email: Vaibhav@gmail.com
+- Password: Vaibhav@123
+
+- Member Account:
+- Email: Vibhu@gmail.com
+- Password: Vaibhav@123
+
 ---
 
 ## 📁 Folder Structure
